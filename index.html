@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu m'aimes ?</title>
+
+<style>
+/* RESET */
+* {
+    box-sizing: border-box;
+}
+
+/* PAGE */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #fdf1f5, #f7f7f7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+}
+
+/* CARD */
+.card {
+    width: 90%;
+    max-width: 360px;
+    padding: 25px 20px 40px;
+    background: white;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+/* IMAGE */
+.card img {
+    width: 65%;
+    max-width: 200px;
+    margin-bottom: 15px;
+}
+
+/* TITRE */
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 35px;
+    color: #333;
+}
+
+/* ZONE BOUTONS */
+.buttons {
+    position: relative;
+    height: 90px;
+}
+
+/* BOUTONS */
+button {
+    border: none;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    position: absolute;
+    touch-action: manipulation;
+}
+
+/* YES */
+.yes {
+    padding: 14px 34px;
+    background: linear-gradient(135deg, #ff5c8a, #ff8fb1);
+    color: white;
+    left: 10px;
+    bottom: 0;
+}
+
+/* NO (taille fixe) */
+.no {
+    width: 100px;
+    height: 48px;
+    background: #ffd1dc;
+    color: #ff4d6d;
+    right: 10px;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PETITS ÉCRANS */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+
+    .buttons {
+        height: 100px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img src="photo_2025-10-16_23-08-25.jpg" alt="oursons">
+
+    <h1>Tu m'aimes ? 😏</h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="window.location.href='yes.html'">Yes</button>
+        <button class="no" id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const container = document.querySelector(".buttons");
+
+function moveNoButton() {
+    noBtn.textContent = "😜";
+
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
+
+    const maxX = containerRect.width - btnRect.width;
+    const maxY = containerRect.height - btnRect.height;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+}
+
+/* PC */
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+/* MOBILE */
+noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveNoButton();
+});
+</script>
+
+</body>
+</html>
